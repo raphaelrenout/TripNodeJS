@@ -19,8 +19,11 @@ describe('voyage API', function() {
 				.get('/flights')
 				.query({origin: 'CDG', destination: 'BOG', date: new Date()})
 				.expect(200)
-				.then(request => {
-					expect(request.body).to.be.an('array');
+				.then(response => {
+					const body = response.body;
+					expect(body).to.be.an('array');
+					expect(body[0].destination).to.be.equal('BOG');
+          expect(body[0].origin).to.be.equal('CDG');
 				});
 		});
 	});
